@@ -25,7 +25,7 @@ import pickle
 
 now = datetime.now() # current date and time
 date_time = now.strftime("%m_%d_%Y_%H_%M_%S")
-experiment_name = 'push_v1_' + str(date_time)
+experiment_name = 'pick_place_v1_' + str(date_time)
 dowel_logger.add_output(dowel.StdOutput())
 dowel_logger.add_output(dowel.CsvOutput(os.path.join(experiment_name, 'progress.csv')))
 dowel_logger.add_output(dowel.TensorBoardOutput(experiment_name, x_axis='TotalEnvSteps'))
@@ -52,7 +52,7 @@ def get_ML1_envs_test(name):
 
 
 def experiment(variant):
-    expl_env =  MTMetaWorldWrapper(get_ML1_envs("push-v1"))
+    expl_env =  MTMetaWorldWrapper(get_ML1_envs("pick-place-v1"))
     eval_env = pickle.loads(pickle.dumps(expl_env))
     obs_dim = expl_env.observation_space.low.size
     action_dim = eval_env.action_space.low.size

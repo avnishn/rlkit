@@ -78,55 +78,55 @@ class BaseRLAlgorithm(object, metaclass=abc.ABCMeta):
         return snapshot
 
     def _log_stats(self, epoch):
-        logger.log("Epoch {} finished".format(epoch), with_timestamp=True)
+        # logger.log("Epoch {} finished".format(epoch), with_timestamp=True)
 
-        """
-        Replay Buffer
-        """
-        logger.record_dict(
-            self.replay_buffer.get_diagnostics(),
-            prefix='replay_buffer/'
-        )
+        # """
+        # Replay Buffer
+        # """
+        # logger.record_dict(
+        #     self.replay_buffer.get_diagnostics(),
+        #     prefix='replay_buffer/'
+        # )
 
-        """
-        Trainer
-        """
-        logger.record_dict(self.trainer.get_diagnostics(), prefix='trainer/')
+        # """
+        # Trainer
+        # """
+        # logger.record_dict(self.trainer.get_diagnostics(), prefix='trainer/')
 
-        """
-        Exploration
-        """
-        logger.record_dict(
-            self.expl_data_collector.get_diagnostics(),
-            prefix='exploration/'
-        )
-        expl_paths = self.expl_data_collector.get_epoch_paths()
-        if hasattr(self.expl_env, 'get_diagnostics'):
-            logger.record_dict(
-                self.expl_env.get_diagnostics(expl_paths),
-                prefix='exploration/',
-            )
-        logger.record_dict(
-            eval_util.get_generic_path_information(expl_paths),
-            prefix="exploration/",
-        )
-        """
-        Evaluation
-        """
-        logger.record_dict(
-            self.eval_data_collector.get_diagnostics(),
-            prefix='evaluation/',
-        )
-        eval_paths = self.eval_data_collector.get_epoch_paths()
-        if hasattr(self.eval_env, 'get_diagnostics'):
-            logger.record_dict(
-                self.eval_env.get_diagnostics(eval_paths),
-                prefix='evaluation/',
-            )
-        logger.record_dict(
-            eval_util.get_generic_path_information(eval_paths),
-            prefix="evaluation/",
-        )
+        # """
+        # Exploration
+        # """
+        # logger.record_dict(
+        #     self.expl_data_collector.get_diagnostics(),
+        #     prefix='exploration/'
+        # )
+        # # expl_paths = self.expl_data_collector.get_epoch_paths()
+        # # if hasattr(self.expl_env, 'get_diagnostics'):
+        # #     logger.record_dict(
+        # #         self.expl_env.get_diagnostics(expl_paths),
+        # #         prefix='exploration/',
+        # #     )
+        # # logger.record_dict(
+        # #     eval_util.get_generic_path_information(expl_paths),
+        # #     prefix="exploration/",
+        # # )
+        # """
+        # Evaluation
+        # """
+        # logger.record_dict(
+        #     self.eval_data_collector.get_diagnostics(),
+        #     prefix='evaluation/',
+        # )
+        # eval_paths = self.eval_data_collector.get_epoch_paths()
+        # if hasattr(self.eval_env, 'get_diagnostics'):
+        #     logger.record_dict(
+        #         self.eval_env.get_diagnostics(eval_paths),
+        #         prefix='evaluation/',
+        #     )
+        # logger.record_dict(
+        #     eval_util.get_generic_path_information(eval_paths),
+        #     prefix="evaluation/",
+        # )
 
         """
         Misc
